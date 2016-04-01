@@ -14,8 +14,27 @@
 #import "QBAssetCell.h"
 #import "QBVideoIndicatorView.h"
 
-static CGSize CGSizeScale(CGSize size, CGFloat scale) {
-    return CGSizeMake(size.width * scale, size.height * scale);
+CGSize CGSizeScale(CGSize size, CGFloat scale)
+{
+    CGSize scaledSize = CGSizeMake(size.width * scale, size.height * scale);
+    BOOL compatibilityMode = UI_USER_INTERFACE_IDIOM() == UIUserInterfaceIdiomPhone && [[[UIDevice currentDevice] model] hasPrefix:@"iPad"];
+
+    if (compatibilityMode)
+    {
+        CGFloat minIPadSizeWorkaround = 258.;
+        CGFloat multiplier = 1.;
+
+        if (size.width < minIPadSizeWorkaround)
+            multiplier = ceil(minIPadSizeWorkaround / size.width);
+
+        if (size.height < minIPadSizeWorkaround)
+            multiplier = MAX(multiplier, ceil(minIPadSizeWorkaround / size.height));
+
+        scaledSize.width = size.width * multiplier;
+        scaledSize.height = size.height * multiplier;
+    }
+
+    return scaledSize;
 }
 
 @interface QBImagePickerController (Private)

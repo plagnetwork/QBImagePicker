@@ -16,10 +16,6 @@
 #import "QBImagePickerController.h"
 #import "QBAssetsViewController.h"
 
-static CGSize CGSizeScale(CGSize size, CGFloat scale) {
-    return CGSizeMake(size.width * scale, size.height * scale);
-}
-
 @interface QBImagePickerController (Private)
 
 @property (nonatomic, strong) NSBundle *assetBundle;

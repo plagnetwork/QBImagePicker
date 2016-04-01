@@ -11,6 +11,8 @@
 @class QBImagePickerController;
 @class PHAssetCollection;
 
+CGSize CGSizeScale(CGSize size, CGFloat scale);
+
 @interface QBAssetsViewController : UICollectionViewController
 
 @property (nonatomic, weak) QBImagePickerController *imagePickerController;

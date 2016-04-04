@@ -31,6 +31,8 @@ typedef NS_ENUM(NSUInteger, QBImagePickerMediaType) {
 
 @interface QBImagePickerController : UIViewController
 
+@property (nonatomic, readonly) UINavigationController *albumsNavigationController;
+
 @property (nonatomic, weak) id<QBImagePickerControllerDelegate> delegate;
 
 @property (nonatomic, strong, readonly) NSMutableOrderedSet *selectedAssets;
